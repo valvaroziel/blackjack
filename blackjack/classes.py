@@ -33,3 +33,11 @@ class Deck:
         for rank in range(13):
             for suit in range(4):
                 cards.append(Card(rank, con.SUITS[suit]))
+
+        self.shuffle_deck()
+
+    def shuffle_deck(self):
+        pass
+
+    def draw(self):
+        pass

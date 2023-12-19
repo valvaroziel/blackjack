@@ -15,7 +15,7 @@ def main():
     # test_card.hide_card()
     # print(*test_card.generate_text(), sep="\n")
     # for i, card in enumerate(text2):
-    #     card_text[i] += text2[i]
+    #     card_text[i] += card
 
 
     # print(*card_text, sep='\n')
