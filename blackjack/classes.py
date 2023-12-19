@@ -1,18 +1,26 @@
+import random
+
+import constants as con
+
 class Card:
     def __init__(self, rank, suit) -> None:
         self.rank = rank
         self.suit = suit
+        self.flipped = False
 
-    # def generate_text(self):
-    #     if self.rank == 10:
-    #         card_text = [' ------- \n', f'|{self.rank}   |\n', f'|  {self.suit}  |\n', f'|   {self.rank}|\n', '------- \n']
-    #     else:
-    #         card_text = [' -------  \n', f'|{self.rank:<5}|\n', f'|{self.suit:^5}|\n', f'|{self.rank:>5}|\n', '------- \n']
+    def hide_card(self):
+        self.rank = '##'
+        self.suit = '###'
 
-
-    #     return(card_text)
     def generate_text(self):
         card_text = ['-------  ', f'|{self.rank:<5}|  ', f'|{self.suit:^5}|  ', f'|{self.rank:>5}|  ', '-------  ']
 
+        return card_text
 
-        return(card_text)
+class Deck:
+    def __init__(self):
+        cards = []
+
+        for rank in range(13):
+            for suit in range(4):
+                cards.append(Card(rank, con.SUITS[suit]))
