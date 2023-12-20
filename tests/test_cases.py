@@ -1,4 +1,4 @@
-from blackjack import classes
+from utils import classes
 #from blackjack import constants as con
 
 

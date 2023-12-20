@@ -1,6 +1,6 @@
 import random
 
-from blackjack import constants as con
+from utils import constants as con
 
 
 def main():
