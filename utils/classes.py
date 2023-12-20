@@ -9,6 +9,10 @@ class Card:
         self.hidden = hidden
         self.saved_values = None
 
+        if self.hidden is True:
+            self.rank = '##'
+            self.suit = '###'
+
     def hide(self):
         self.saved_values = (self.rank, self.suit)
 
@@ -26,13 +30,18 @@ class Card:
 
         return card_text
 
-    def fetch_data(self):
+    def fetch_data(self) -> tuple[str,str]:
+        """Returns a tuple containing a card's rank and suit.
+
+        Returns:
+            tuple: (rank, suit)
+        """
         data = (self.rank, self.suit)
 
         return data
 
 class Deck:
-    def __init__(self, empty=False):
+    def __init__(self, empty=False, shuffled=False):
         self.cards = []
 
         if empty is True:
@@ -42,13 +51,16 @@ class Deck:
             for suit in range(4):
                 self.cards.append(Card(con.RANKS[rank], con.SUITS[suit]))
 
-        # self.shuffle_deck()
+        if shuffled is True:
+            self.shuffle_deck()
 
     def shuffle_deck(self):
         random.shuffle(self.cards)
 
     def draw(self):
-        pass
+        drawn_card = self.cards.pop()
+
+        return drawn_card
 
     def size(self):
         return len(self.cards)
