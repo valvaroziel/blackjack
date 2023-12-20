@@ -103,11 +103,11 @@ class TestHelpers:
         assert helpers.value_hand(self.hand) == 20
 
     def test_ace_handling(self):
-        small_ace = [classes.Card('2', con.HEARTS), classes.Card('J', con.CLUBS), classes.Card('8', con.DIAMONDS), classes.Card('A', con.HEARTS)]
+        ace_is_one = [classes.Card('2', con.HEARTS), classes.Card('J', con.CLUBS), classes.Card('8', con.DIAMONDS), classes.Card('A', con.HEARTS)]
 
-        big_ace = [classes.Card('2', con.HEARTS), classes.Card('A', con.CLUBS), classes.Card('8', con.DIAMONDS)]
+        ace_is_eleven = [classes.Card('2', con.HEARTS), classes.Card('A', con.CLUBS), classes.Card('8', con.DIAMONDS)]
 
-        assert helpers.value_hand(small_ace) and helpers.value_hand(big_ace) == 21
+        assert helpers.value_hand(ace_is_one) and helpers.value_hand(ace_is_eleven) == 21
 
     def test_hitting(self):
         deck = classes.Deck()
