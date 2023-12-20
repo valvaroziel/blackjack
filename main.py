@@ -1,7 +1,6 @@
 import random
 
-import constants as con
-import classes
+from blackjack import constants as con
 
 
 def main():

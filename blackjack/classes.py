@@ -1,4 +1,4 @@
-import random
+# import random
 
 import constants as con
 
@@ -28,11 +28,11 @@ class Card:
 
 class Deck:
     def __init__(self):
-        cards = []
+        self.cards = []
 
         for rank in range(13):
             for suit in range(4):
-                cards.append(Card(rank, con.SUITS[suit]))
+                self.cards.append(Card(rank, con.SUITS[suit]))
 
         self.shuffle_deck()
 
@@ -41,3 +41,6 @@ class Deck:
 
     def draw(self):
         pass
+
+    def size(self):
+        return len(self.cards)
