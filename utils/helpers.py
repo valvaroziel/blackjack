@@ -17,12 +17,11 @@ def format_cards(cards: list[classes.Card]):
 
 def value_hand(cards: list[classes.Card]):
     hand = [card.fetch_data() for card in cards]
-    faces = constants.FACES
     total = 0
 
     for card in hand:
         # If it isn't a face card, add its value to the total
-        if card[0] not in faces:
+        if card[0] not in constants.FACES:
             total += int(card[0])
             continue
         # If it's a non-Ace face card, add 10 to the total
