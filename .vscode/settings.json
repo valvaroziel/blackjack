@@ -5,10 +5,11 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/utils"
+        "${workspaceFolder}\\utils"
     ],
     "python.autoComplete.extraPaths": [
-        "${workspaceFolder}/utils"
+        "${workspaceFolder}\\utils"
     ],
-    "python.analysis.completeFunctionParens": true
+    "python.analysis.completeFunctionParens": true,
+    "python.testing.cwd": "c:\\Users\\syrok\\dev\\sweigarts\\blackjack\\tests\\"
 }

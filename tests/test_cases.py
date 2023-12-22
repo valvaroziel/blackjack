@@ -76,7 +76,7 @@ class TestCard:
         print()
         print(*card.generate_text(), sep='\n')
 
-        assert card.generate_text() != None
+        assert card.generate_text() is not None
 
     def test_card_value_persists_after_being_hidden(self):
         card = classes.Card(2, con.CLUBS)
@@ -101,6 +101,8 @@ class TestHelpers:
 
     def test_hand_can_be_totaled(self):
         assert helpers.value_hand(self.hand) == 20
+        self.hand[0].hidden = True
+        assert helpers.value_hand(self.hand) == 0
 
     def test_ace_handling(self):
         ace_is_one = [classes.Card('2', con.HEARTS), classes.Card('J', con.CLUBS), classes.Card('8', con.DIAMONDS), classes.Card('A', con.HEARTS)]
@@ -128,7 +130,7 @@ class TestHelpers:
         hands = helpers.deal_cards(deck)
         dealer, player = hands
 
-        assert (len(dealer) and len(player) == 2) and dealer[0].fetch_data() == ('##', '###')
+        assert (len(dealer) == 2 and len(player) == 2) and dealer[0].fetch_data() == ('##', '###')
 
 
 

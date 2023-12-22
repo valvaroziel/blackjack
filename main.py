@@ -7,21 +7,22 @@ def main():
     purse = constants.INITIAL_PURSE # Create the starting purse which is tracked between rounds.
 
 
-    while True:     # Main program loop. Loops each time the user starts a new round; initializes the deck and player/dealer hands every time a round ends.
+    while True:     # Main program loop. Loops each time the user starts a new game; initializes the deck and player/dealer hands every time a round ends.
         deck = classes.Deck()
         deck.shuffle_deck()
-        player, dealer = helpers.deal_cards(deck)
+        dealer, player = helpers.deal_cards(deck)
         bet = 0
 
         print(constants.RULES + '\n')
         print(f'Money: ${purse}')
 
         bet = helpers.bet(purse)
-        if bet == 'QUIT':
+        if str(bet).upper() == 'QUIT':
             sys.exit()
 
-        while True:  # Turn loop. Every iteration of the outer loop is one round; every iteration of this loop is one turn of one round.
-            pass
+        print(f'Bet: {bet}\n\n')
+        while True:  # Turn loop. Every iteration of the outer loop is one game; every iteration of this loop is one turn of one game.
+            print(f'DEALER: {helpers.value_hand(dealer)}')
 
 
 

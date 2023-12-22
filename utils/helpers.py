@@ -1,4 +1,3 @@
-from hmac import new
 import constants
 import classes
 
@@ -26,6 +25,9 @@ def value_hand(cards: list[classes.Card]) -> int:
     Returns:
         int: The total value o the hand.
     """
+    for card in cards:
+        if card.hidden is True:
+            return 0
 
     hand = [card.fetch_data() for card in cards]     # Make a list of tuples containing the data from each card.
     total = 0
@@ -82,7 +84,7 @@ def bet(purse):
     print('Please enter a bet (or QUIT to stop playing)')
     user_input = input(f'(1-{purse} or QUIT): ')
 
-    while user_input != 'QUIT' and isinstance(user_input, int) is False:
+    while str(user_input).upper() != 'QUIT' and isinstance(user_input, int) is False:
         user_input = input(f'Please input a number (1-{purse}) or type QUIT: ')
 
     return user_input
