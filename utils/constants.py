@@ -9,3 +9,8 @@ NUMBERS = ['2','3','4','5','6','7','8','9','10']
 FACES = ['J','Q','K','A']
 RANKS = NUMBERS + FACES
 SUITS = [HEARTS, DIAMONDS, SPADES, CLUBS]
+
+RULES =
+"""
+
+"""
