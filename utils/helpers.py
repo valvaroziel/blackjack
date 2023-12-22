@@ -1,12 +1,14 @@
+from hmac import new
 import constants
 import classes
 
-def format_cards(cards: list[classes.Card]):
+def format_cards(cards: list[classes.Card]) -> list[str, str, str, str, str]:
     """Takes a list of Card objects and formats them into a single list of strings ready to be unpacked and printed.
 
     Args:
-        cards (list): A list containing the cards to be displayed.
+        cards (list): A list containing the cards to be displayed as rows of strings.
     """
+
     output = ['','','','','']
 
     for card in cards:
@@ -15,8 +17,17 @@ def format_cards(cards: list[classes.Card]):
 
     return output
 
-def value_hand(cards: list[classes.Card]):
-    hand = [card.fetch_data() for card in cards]
+def value_hand(cards: list[classes.Card]) -> int:
+    """Returns the value of a set of cards according to blackjack rules.
+
+    Args:
+        cards (list[classes.Card]): The hand being evaluated.
+
+    Returns:
+        int: The total value o the hand.
+    """
+
+    hand = [card.fetch_data() for card in cards]     # Make a list of tuples containing the data from each card.
     total = 0
 
     for card in hand:
@@ -37,15 +48,23 @@ def value_hand(cards: list[classes.Card]):
 
     return total
 
-def hit(cards: list[classes.Card], deck: classes.Deck):
-    cards.append(deck.draw())
+def hit(deck: classes.Deck) -> classes.Card:
+    """Performs a 'hit' according to the rules of Blackjack.
+
+    Args:
+        deck (classes.Deck): The deck being played with.
+    Returns:
+        classes.Card: The card that the player drew.
+    """
+    new_card = deck.draw()
+
+    return new_card
 
 def stand():
     pass
 
 def double_down():
     pass
-
 
 def deal_cards(deck: classes.Deck):
     dealer = []
@@ -58,3 +77,15 @@ def deal_cards(deck: classes.Deck):
     dealer[0].hide()
 
     return dealer, player
+
+def bet(purse):
+    print('Please enter a bet (or QUIT to stop playing)')
+    user_input = input(f'(1-{purse} or QUIT): ')
+
+    while user_input != 'QUIT' and isinstance(user_input, int) is False:
+        user_input = input(f'Please input a number (1-{purse}) or type QUIT: ')
+
+    return user_input
+
+def action():
+    pass

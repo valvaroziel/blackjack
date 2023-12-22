@@ -112,9 +112,9 @@ class TestHelpers:
     def test_hitting(self):
         deck = classes.Deck()
         deck.shuffle_deck()
-        helpers.hit(self.hand, deck)
-        helpers.hit(self.hand, deck)
-        helpers.hit(self.hand, deck)
+        self.hand.append(helpers.hit(deck))
+        self.hand.append(helpers.hit(deck))
+        self.hand.append(helpers.hit(deck))
         output = helpers.format_cards(self.hand)
 
         print()
