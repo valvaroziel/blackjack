@@ -27,7 +27,7 @@ def value_hand(cards: list[classes.Card]) -> int:
     """
     for card in cards:
         if card.hidden is True:
-            return 0
+            return '???'
 
     hand = [card.fetch_data() for card in cards]     # Make a list of tuples containing the data from each card.
     total = 0
@@ -84,7 +84,8 @@ def bet(purse):
     print('Please enter a bet (or QUIT to stop playing)')
     user_input = input(f'(1-{purse} or QUIT): ')
 
-    while str(user_input).upper() != 'QUIT' and isinstance(user_input, int) is False:
+    while str(user_input).upper() != 'QUIT' and user_input.isdigit() is False:
+        print(type(user_input))
         user_input = input(f'Please input a number (1-{purse}) or type QUIT: ')
 
     return user_input

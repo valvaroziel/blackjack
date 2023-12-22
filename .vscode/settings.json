@@ -5,7 +5,8 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.extraPaths": [
-        "${workspaceFolder}\\utils"
+        "${workspaceFolder}\\utils",
+        "./utils"
     ],
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}\\utils"

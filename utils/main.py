@@ -1,6 +1,7 @@
 import sys
 
-from utils import classes, helpers, constants
+# from utils import classes, helpers, constants
+import classes, helpers, constants
 
 
 def main():
@@ -20,10 +21,10 @@ def main():
         if str(bet).upper() == 'QUIT':
             sys.exit()
 
-        print(f'Bet: {bet}\n\n')
+        print(f'Bet: {bet}\n')
         while True:  # Turn loop. Every iteration of the outer loop is one game; every iteration of this loop is one turn of one game.
             print(f'DEALER: {helpers.value_hand(dealer)}')
-
+            sys.exit()
 
 
 if __name__ == "__main__":
