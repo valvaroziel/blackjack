@@ -62,13 +62,19 @@ def hit(deck: classes.Deck) -> classes.Card:
 
     return new_card
 
-def stand():
-    pass
+def dealer_play(dealer, deck):
+    if value_hand(dealer) < 17:
+        dealer.append(hit(deck))
 
-def double_down():
-    pass
+def deal_cards(deck: classes.Deck) -> list:
+    """Initializes the dealer and player's hands.
 
-def deal_cards(deck: classes.Deck):
+    Args:
+        deck (classes.Deck): The deck being used for the current game.
+
+    Returns:
+        list: Returns list with two nested lists, each one containing Card objects. Always in [dealer, player] order.
+    """
     dealer = []
     player = []
 
@@ -80,15 +86,65 @@ def deal_cards(deck: classes.Deck):
 
     return dealer, player
 
-def bet(purse):
+def wager(purse):
     print('Please enter a bet (or QUIT to stop playing)')
     user_input = input(f'(1-{purse} or QUIT): ')
 
     while str(user_input).upper() != 'QUIT' and user_input.isdigit() is False:
-        print(type(user_input))
         user_input = input(f'Please input a number (1-{purse}) or type QUIT: ')
 
     return user_input
 
-def action():
-    pass
+def action(dd=False, first=False):
+    actions = ['H', 'S', 'D']
+
+    if first is True:
+        user_input = input('(H)it, (S)tand, (D)ouble down: ')
+
+        while user_input.isdigit() or user_input.upper() not in actions:
+            user_input = input('Input should be one of (H)it, (S)tand, (D)ouble down: ')
+        return user_input.upper()
+
+    actions.remove('D')
+
+    if dd:
+        actions.remove('S')
+
+        user_input = input('You must (H)it, because you doubled down on your first turn: ')
+
+        while user_input.isdigit() or user_input.upper() not in actions:
+            user_input = input('Input must be (H)it: ')
+        return user_input.upper()
+
+    user_input = input('(H)it or (S)tand: ')
+
+    while user_input.isdigit() or user_input.upper() not in actions:
+        user_input = input('Input should be one of (H)it or (S)tand: ')
+
+    return user_input.upper()
+
+def check_state(dealer, player, move) -> dict or None:
+    winner = {}
+    dealer_score = value_hand(dealer)
+    player_score = value_hand(player)
+
+    # If neither player has a blackjack or has busted, there is no winner
+    if player_score < 21 and dealer_score < 21:
+        if move == 'S' and dealer_score >= 17:
+            if dealer_score >= player_score:
+                winner = {'dealer':dealer_score}
+                return winner
+            else:
+                winner = {'player':player_score}
+                return winner
+        return winner
+
+    # Check if either player has busted
+    if player_score > 21 or dealer_score == 21:
+        winner = {'dealer':dealer_score}
+        return winner
+
+    elif dealer_score > 21 or player_score == 21:
+        winner = {'player':player_score}
+        return winner
+
